@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ação entre Amigos - Jeovana & Luiz Vitor</title>
+    <title>Rifa do Casamento - Jeovana & Luiz Vitor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -26,18 +26,19 @@
             font-family: 'Montserrat', sans-serif;
             background-color: var(--creme-fundo);
             color: var(--texto-escuro);
+            text-align: center;
+            padding: 20px;
             margin: 0;
-            padding: 40px 20px;
             background-image: radial-gradient(var(--verde-oliva-claro) 0.5px, transparent 0.5px), radial-gradient(var(--verde-oliva-claro) 0.5px, var(--creme-fundo) 0.5px);
             background-size: 20px 20px;
             background-position: 0 0, 10px 10px;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 480px;
             margin: 0 auto;
             background: var(--creme-card);
-            padding: 40px 30px;
+            padding: 30px 20px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(74, 83, 53, 0.08);
             border: 1px solid rgba(163, 177, 138, 0.3);
@@ -45,309 +46,382 @@
 
         .monograma {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
+            font-size: 28px;
             font-style: italic;
             color: var(--verde-oliva-escuro);
             letter-spacing: 2px;
-            text-align: center;
             margin-bottom: 5px;
         }
 
         .divisor-folhas {
             color: var(--verde-oliva-borda);
-            font-size: 16px;
-            text-align: center;
-            margin-bottom: 25px;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
-        h1 {
+        h1 { 
             font-family: 'Cormorant Garamond', serif;
-            font-size: 36px;
-            text-align: center;
-            color: var(--verde-oliva-escuro);
-            margin: 0 0 15px 0;
+            font-size: 32px;
+            color: var(--verde-oliva-escuro); 
+            margin: 0 0 10px 0;
             font-weight: 600;
         }
-
-        .descricao {
-            text-align: center;
-            font-size: 15px;
+        
+        .subtitulo { 
+            color: var(--texto-claro); 
+            font-size: 14px; 
             line-height: 1.6;
-            color: var(--texto-claro);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
-        .grid-numeros {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-            margin-bottom: 35px;
-        }
-
-        @media (max-width: 400px) {
-            .grid-numeros { grid-template-columns: repeat(4, 1fr); }
-        }
-
-        .numero-botao {
-            font-family: 'Montserrat', sans-serif;
-            aspect-ratio: 1 / 1;
+        .container-premio {
+            margin: 15px auto;
+            width: 180px; 
+            height: 180px; 
             border: 1px solid var(--verde-oliva-borda);
+            padding: 6px;
+            border-radius: 12px;
             background-color: var(--creme-fundo);
-            color: var(--verde-oliva-escuro);
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
-        .numero-botao:hover:not(:disabled) {
+        .img-premio {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            aspect-ratio: 1 / 1; 
+            border-radius: 8px;
+            display: block;
+        }
+
+        .rifa-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .numero-btn {
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--verde-oliva-claro);
-            transform: scale(1.05);
+            border: 1px solid var(--verde-oliva-borda);
+            color: var(--verde-oliva-escuro);
+            padding: 14px 0;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
         }
 
-        .numero-botao.selecionado {
-            background-color: var(--verde-oliva-escuro);
-            color: white;
+        .numero-btn:hover {
+            background-color: var(--verde-oliva-medio);
             border-color: var(--verde-oliva-escuro);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .numero-btn.vendido {
+            background-color: #f0f0f0 !important;
+            border-color: #e0e0e0 !important;
+            color: #b5b5b5 !important;
+            cursor: not-allowed;
+            transform: none !important;
+            text-decoration: line-through;
+        }
+
+        .numero-btn.selecionado {
+            background-color: var(--verde-oliva-escuro) !important;
+            border-color: var(--verde-oliva-escuro) !important;
+            color: white !important;
             box-shadow: 0 4px 10px rgba(74, 83, 53, 0.3);
         }
 
-        .numero-botao:disabled {
-            background-color: #e0e0e0;
-            color: #a0a0a0;
-            border-color: #d0 d0 d0;
-            cursor: not-allowed;
-            position: relative;
-        }
-
-        .numero-botao:disabled::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            background-color: #a0a0a0;
-            transform: rotate(-45deg);
-        }
-
-        .formulario {
-            border-top: 1px dashed var(--verde-oliva-borda);
-            padding-top: 30px;
-        }
-
-        .campo-grupo {
-            margin-bottom: 20px;
+        #formulario-venda {
+            display: none;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid var(--verde-oliva-claro);
             text-align: left;
+            animation: fadeIn 0.4s ease;
         }
 
-        label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 8px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #texto-numero-selecionado {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
             color: var(--verde-oliva-escuro);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        label { 
+            font-size: 12px;
+            font-weight: 600; 
+            display: block; 
+            margin-bottom: 6px; 
+            color: var(--texto-escuro); 
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         input {
-            font-family: 'Montserrat', sans-serif;
             width: 100%;
-            padding: 12px 15px;
+            padding: 12px;
+            margin-bottom: 18px;
             border: 1px solid var(--verde-oliva-borda);
-            border-radius: 8px;
             background-color: var(--creme-fundo);
             color: var(--texto-escuro);
-            font-size: 15px;
+            border-radius: 8px;
             box-sizing: border-box;
-            transition: border-color 0.2s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--verde-oliva-escuro);
-        }
-
-        .btn-comprar {
             font-family: 'Montserrat', sans-serif;
-            width: 100%;
+            font-size: 14px;
+        }
+
+        .caixa-pix {
+            border-left: 4px solid var(--azul-antigo);
+            padding: 15px;
+            background-color: #fafaf8;
+            border-radius: 4px 8px 8px 4px;
+            color: var(--texto-escuro);
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .caixa-pix strong { color: var(--azul-antigo); }
+
+        .wrapper-chave-pix {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .chave-pix-destaque {
+            font-family: monospace;
+            background: #ffffff;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px dashed var(--rosa-antigo);
+            font-size: 14px;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .btn-copiar-pix {
+            background-color: var(--azul-antigo);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-copiar-pix:hover {
+            background-color: #48616e;
+        }
+
+        .btn-confirmar {
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--verde-oliva-escuro);
             color: white;
             border: none;
-            padding: 16px;
-            font-size: 16px;
+            padding: 14px;
+            width: 100%;
+            font-size: 15px;
             font-weight: 600;
-            border-radius: 30px;
+            border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(74, 83, 53, 0.15);
-            transition: all 0.2s;
             letter-spacing: 1px;
-            margin-top: 10px;
         }
 
-        .btn-comprar:hover:not(:disabled) {
-            background-color: var(--verde-oliva-medio);
-            transform: translateY(-2px);
-        }
-
-        .btn-comprar:disabled {
-            background-color: #b5b5b5;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        .carregando-msg, .erro-mensagem {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 30px 0;
-            font-weight: 600;
-            color: var(--texto-claro);
-        }
-
-        .erro-mensagem {
-            color: #a74a4a;
-        }
+        .btn-confirmar:hover { background-color: var(--verde-oliva-medio); }
+        
+        #loading { color: var(--azul-antigo); font-weight: bold; margin: 15px 0; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="monograma">J & L</div>
-    <div class="divisor-folhas">🍃 ———————— 🍃</div>
+    <div class="divisor-folhas">🍃 ——————— 🍃</div>
     
-    <h1>Ação entre Amigos</h1>
-    <div class="descricao">
-        Escolha os seus números da sorte abaixo para concorrer ao nosso prêmio especial de casamento! Os números em cinza já foram reservados.
+    <h1>Rifa dos Noivos</h1>
+    <p class="subtitulo">Queridos convidados, escolham quantos números desejarem, preencham seus dados e concorram a este lindo kit com <strong>Licor de Amarula & Trufas Finas</strong>! Cada número custa apenas <strong>R$ 10</strong>.</p>
+    
+    <div class="container-premio">
+        <img src="https://lh3.googleusercontent.com/d/1u_Eh70kg5ee3OLqJXSfoiR2IFOEY9iie=w800" alt="Brinde Rifa" class="img-premio">
     </div>
 
-    <div class="grid-numeros" id="gridNumeros">
-        <div class="carregando-msg">Carregando números disponíveis...</div>
-    </div>
+    <div id="loading">Carregando números disponíveis...</div>
+    <div class="rifa-grid" id="gridRifa"></div>
 
-    <div class="formulario">
-        <div class="campo-grupo">
-            <label for="idNome">Seu Nome Completo:</label>
-            <input type="text" id="idNome" placeholder="Ex: Maria Silva">
-        </div>
+    <div id="formulario-venda">
+        <h3 id="texto-numero-selecionado">Números Selecionados: --</h3>
+        <h4 id="texto-valor-total" style="color: var(--verde-oliva-medio); margin-top: -10px; margin-bottom: 20px;">Total a pagar: R$ 0,00</h4>
         
-        <div class="campo-grupo">
-            <label for="idWhats">Seu WhatsApp:</label>
-            <input type="tel" id="idWhats" placeholder="Ex: (11) 99999-9999">
+        <label for="idNome">Seu Nome Completo:</label>
+        <input type="text" id="idNome" placeholder="Digite seu nome aqui" required>
+
+        <label for="idWhitespace">Seu WhatsApp:</label>
+        <input type="tel" id="idWhatsapp" placeholder="(00) 00000-0000" required>
+
+        <div class="caixa-pix">
+            <strong>✨ Como confirmar sua participação:</strong><br>
+            Faça o valor total do Pix para os noivos e clique no botão abaixo para registrar seus números.<br>
+            <div class="wrapper-chave-pix">
+                <span class="chave-pix-destaque" id="chavePixTexto">jeokita@gmail.com</span>
+                <button class="btn-copiar-pix" id="btnCopiar" onclick="copiarChavePix()">Copiar Chave</button>
+            </div>
         </div>
 
-        <button class="btn-comprar" id="btnComprar" onclick="enviarPedido()" disabled>Escolha um número para prosseguir</button>
+        <button class="btn-confirmar" id="btnEnviar" onclick="enviarDadosRifa()">Garantir meus Números</button>
     </div>
 </div>
 
 <script>
     const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPmVS6dppOmMDGPxxf0hI52Pf-r26HJb2uIps6zP52PCvW4GMedNPWmHrn5G_NHuIP7Q/exec";
     
-    let numerosSelecionados = [];
+    let listaNumerosSelecionados = [];
 
-    async function carregarNumeros() {
+    async function carregarRifa() {
         try {
             const response = await fetch(APP_SCRIPT_URL);
             const data = await response.json();
             
-            // Corrige a leitura da propriedade vinda unificada do Sheets
-            const numerosOcupados = data.ocupados || []; 
+            // Correção técnica: Lendo 'data.ocupados' para casar com o back-end unificado
+            const ocupados = data.ocupados || [];
             
-            const grid = document.getElementById('gridNumeros');
-            grid.innerHTML = ''; 
+            document.getElementById('loading').style.display = 'none';
+            const grid = document.getElementById('gridRifa');
+            grid.innerHTML = '';
+            
+            listaNumerosSelecionados = [];
+            atualizarFormularioVisivel();
 
             for (let i = 1; i <= 60; i++) {
-                const botao = document.createElement('button');
-                botao.className = 'numero-botao';
-                botao.innerText = i;
-
-                if (numerosOcupados.includes(i)) {
-                    botao.classList.add('ocupado');
-                    botao.disabled = true;
-                } else {
-                    botao.onclick = () => alternarNumero(i, botao);
+                const btn = document.createElement('button');
+                btn.className = 'numero-btn';
+                btn.innerText = i;
+                
+                if (ocupados.includes(i)) {
+                    btn.classList.add('vendido');
                 }
 
-                grid.appendChild(botao);
+                btn.onclick = function() {
+                    if (!this.classList.contains('vendido')) {
+                        if (this.classList.contains('selecionado')) {
+                            this.classList.remove('selecionado');
+                            listaNumerosSelecionados = listaNumerosSelecionados.filter(n => n !== i);
+                        } else {
+                            this.classList.add('selecionado');
+                            listaNumerosSelecionados.push(i);
+                        }
+                        
+                        listaNumerosSelecionados.sort((a, b) => a - b);
+                        atualizarFormularioVisivel();
+                    }
+                };
+                grid.appendChild(btn);
             }
         } catch (error) {
-            console.error("Erro ao carregar os dados:", error);
-            document.getElementById('gridNumeros').innerHTML = 
-                `<div class="erro-mensagem">Erro ao carregar os números. Tente recarregar a página.</div>`;
+            document.getElementById('loading').innerText = 'Erro ao carregar os números. Tente recarregar.';
+            console.error(error);
         }
     }
 
-    function alternarNumero(num, elemento) {
-        const index = numerosSelecionados.indexOf(num);
+    function atualizarFormularioVisivel() {
+        const form = document.getElementById('formulario-venda');
         
-        if (index > -1) {
-            numerosSelecionados.splice(index, 1);
-            elemento.classList.remove('selecionado');
-        } else {
-            numerosSelecionados.push(num);
-            elemento.classList.add('selecionado');
+        if (listaNumerosSelecionados.length === 0) {
+            form.style.display = 'none';
+            return;
         }
-
-        atualizarBotaoEnvio();
+        
+        form.style.display = 'block';
+        document.getElementById('texto-numero-selecionado').innerText = 'Números Selecionados: ' + listaNumerosSelecionados.join(', ');
+        
+        const valorTotal = listaNumerosSelecionados.length * 10;
+        document.getElementById('texto-valor-total').innerText = `Total a pagar (${listaNumerosSelecionados.length}x): R$ ${valorTotal},00`;
     }
 
-    function atualizarBotaoEnvio() {
-        const btn = document.getElementById('btnComprar');
-        if (numerosSelecionados.length === 0) {
-            btn.disabled = true;
-            btn.innerText = "Escolha um número para prosseguir";
-        } else {
-            btn.disabled = false;
-            btn.innerText = `Reservar Número(s): ${numerosSelecionados.sort((a, b) => a - b).join(', ')}`;
-        }
+    function copiarChavePix() {
+        const chaveTexto = document.getElementById('chavePixTexto').innerText;
+        const btnCopiar = document.getElementById('btnCopiar');
+        
+        navigator.clipboard.writeText(chaveTexto).then(() => {
+            btnCopiar.innerText = 'Copiado! ✓';
+            btnCopiar.style.backgroundColor = 'var(--verde-oliva-medio)';
+            
+            setTimeout(() => {
+                btnCopiar.innerText = 'Copiar Chave';
+                btnCopiar.style.backgroundColor = 'var(--azul-antigo)';
+            }, 3000);
+        }).catch(err => {
+            console.error('Erro ao copiar: ', err);
+        });
     }
 
-    async function enviarPedido() {
+    async function enviarDadosRifa() {
         const nome = document.getElementById('idNome').value.trim();
-        const whatsapp = document.getElementById('idWhats').value.trim();
-        const btn = document.getElementById('btnComprar');
-
+        const whatsapp = document.getElementById('idWorkspace') ? document.getElementById('idWorkspace').value.trim() : document.getElementById('idWhatsapp').value.trim();
+        const btn = document.getElementById('btnEnviar');
+        
         if (!nome || !whatsapp) {
-            alert("Por favor, preencha o seu nome e WhatsApp antes de continuar.");
+            alert('Por favor, preencha o seu nome e o seu WhatsApp!');
+            return;
+        }
+
+        if (listaNumerosSelecionados.length === 0) {
+            alert('Por favor, selecione pelo menos um número.');
             return;
         }
 
         btn.disabled = true;
-        btn.innerText = "Registrando escolha no sistema...";
+        btn.innerText = "Salvando seus números...";
 
         try {
-            const response = await fetch(APP_SCRIPT_URL, {
+            await fetch(APP_SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors', // Evita bloqueio de segurança na injeção de dados
+                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    nome: nome,
-                    whatsapp: whatsapp,
-                    numeros: numerosSelecionados
-                })
+                body: JSON.stringify({ nome: nome, whatsapp: whatsapp, numeros: listaNumerosSelecionados })
             });
 
-            alert(`🎉 Reserva enviada com sucesso!\n\nNúmero(s): ${numerosSelecionados.join(', ')}\nNome: ${nome}\n\nObrigado por apoiar nosso casamento!`);
+            alert('Parabéns! Seus números foram enviados com sucesso. Faça o Pix correspondente para validá-los!');
             
-            // Reseta a interface local pós-envio
-            numerosSelecionados = [];
             document.getElementById('idNome').value = '';
-            document.getElementById('idWhats').value = '';
-            atualizarBotaoEnvio();
-            carregarNumeros();
-
+            document.getElementById('idWhatsapp').value = '';
+            document.getElementById('formulario-venda').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('loading').innerText = 'Atualizando tabela de números...';
+            
+            setTimeout(carregarRifa, 2000);
+            
         } catch (error) {
-            alert("Houve um problema de rede ao salvar. Verifique sua conexão.");
+            alert('Ocorreu um erro ao salvar suas escolhas. Tente novamente.');
             console.error(error);
+        } finally {
             btn.disabled = false;
-            atualizarBotaoEnvio();
+            btn.innerText = "Garantir meus Números";
         }
     }
 
-    // Inicializa a grade ao abrir o site
-    carregarNumeros();
+    carregarRifa();
 </script>
 
 </body>
