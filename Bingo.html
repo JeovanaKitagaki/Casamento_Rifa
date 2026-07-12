@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo de Casamento - Jeovana & Luiz Vitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --verde-oliva-escuro: #4a5335;
+            --verde-oliva-medio: #606c38;
+            --verde-oliva-claro: #e6ebd9;
+            --verde-oliva-borda: #a3b18a;
+            --creme-fundo: #faf7f2;
+            --creme-card: #ffffff;
+            --azul-antigo: #5c7a89;
+            --rosa-antigo: #c59797;
+            --texto-escuro: #2c3022;
+            --texto-claro: #707563;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--creme-fundo);
+            color: var(--texto-escuro);
+            text-align: center;
+            padding: 40px 20px;
+            margin: 0;
+            background-image: radial-gradient(var(--verde-oliva-claro) 0.5px, transparent 0.5px), radial-gradient(var(--verde-oliva-claro) 0.5px, var(--creme-fundo) 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: var(--creme-card);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(74, 83, 53, 0.08);
+            border: 1px solid rgba(163, 177, 138, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .monograma {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-style: italic;
+            color: var(--verde-oliva-escuro);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .divisor-folhas {
+            color: var(--verde-oliva-borda);
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        h1 { 
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 38px;
+            color: var(--verde-oliva-escuro); 
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: var(--texto-claro);
+            font-weight: 400;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .painel-central {
+            background-color: var(--creme-fundo);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            text-align: center;
+            margin-bottom: 35px;
+            width: 100%;
+            max-width: 320px;
+            border: 1px solid var(--verde-oliva-borda);
+            box-sizing: border-box;
+        }
+
+        .area-globo {
+            perspective: 400px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .bola-bingo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--verde-oliva-escuro);
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(74, 83, 53, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        /* Animações de Giro do Globo mantendo a elegância */
+        .bola-bingo.giro-rapido { animation: rodarBola 0.12s infinite linear; background-color: var(--verde-oliva-medio); }
+        .bola-bingo.giro-medio { animation: rodarBola 0.4s infinite linear; background-color: var(--azul-antigo); }
+        .bola-bingo.giro-lento { animation: rodarBola 0.9s infinite linear; background-color: var(--rosa-antigo); }
+
+        @keyframes rodarBola {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            50% { transform: rotateX(180deg) rotateY(90deg) scale(0.95); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        button {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--verde-oliva-escuro);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(74, 83, 53, 0.15);
+            transition: all 0.2s;
+            width: 100%;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: var(--verde-oliva-medio);
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            background-color: #b5b5b5;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .historico {
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--texto-claro);
+            font-weight: 600;
+        }
+        
+        .historico strong {
+            color: var(--verde-oliva-escuro);
+            font-size: 15px;
+        }
+
+        /* Tabuleiro Lindíssimo com a paleta do Casamento */
+        .tabuleiro {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            width: 100%;
+            border: 1px solid var(--verde-oliva-claro);
+            box-sizing: border-box;
+        }
+
+        /* Responsividade para telas menores de celular */
+        @media (max-width: 580px) {
+            .tabuleiro {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .numero-pedra {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--creme-fundo);
+            color: var(--texto-claro);
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 50%;
+            border: 1px solid var(--verde-oliva-borda);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Estilo Casamento para Pedras Sorteadas (Pares e Ímpares) */
+        .numero-pedra.sorteado-azul {
+            background: var(--azul-antigo);
+            color: white;
+            border-color: var(--azul-antigo);
+            transform: scale(1.08);
+            box-shadow: 0 4px 10px rgba(92, 122, 137, 0.35);
+        }
+
+        .numero-pedra.sorteado-rosa {
+            background: var(--rosa-antigo);
+            color: white;
+            border-color: var(--rosa-antigo);
+            transform: scale(1.08);
+            box-shadow: 0 4px 10px rgba(197, 151, 151, 0.35);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="monograma">J & L</div>
+    <div class="divisor-folhas">🍃 ———————— 🍃</div>
+    
+    <h1>Bingo de Casamento</h1>
+    <h2>Gire o globo e boa sorte!</h2>
+
+    <div class="painel-central">
+        <div class="area-globo">
+            <div class="bola-bingo" id="bolaBingo">--</div>
+        </div>
+        <button id="btnSortear" onclick="sortearComSuspense()">Girar Globo!</button>
+        <div class="historico" id="historicoTexto">Nenhum número sorteado ainda.</div>
+    </div>
+
+    <div class="tabuleiro" id="tabuleiro"></div>
+</div>
+
+<script>
+    const TOTAL_NUMEROS = 75;
+    let numerosDisponiveis = Array.from({ length: TOTAL_NUMEROS }, (_, i) => i + 1);
+    let numerosSorteados = [];
+    
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = new AudioContext();
+
+    function emitirSomClique() {
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(160, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.05);
+        
+        gain.gain.setValueAtTime(0.60, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.05);
+    }
+
+    // Monta o tabuleiro visual dinamicamente
+    const tabuleiroHtml = document.getElementById('tabuleiro');
+    for (let i = 1; i <= TOTAL_NUMEROS; i++) {
+        const div = document.createElement('div');
+        div.className = 'numero-pedra';
+        div.id = `pedra-${i}`;
+        div.innerText = i;
+        tabuleiroHtml.appendChild(div);
+    }
+
+    function sortearComSuspense() {
+        if (numerosDisponiveis.length === 0) {
+            alert("Todas as pedras já foram sorteadas!");
+            return;
+        }
+
+        const btn = document.getElementById('btnSortear');
+        const bola = document.getElementById('bolaBingo');
+        
+        btn.disabled = true;
+        
+        const indice = Math.floor(Math.random() * numerosDisponiveis.length);
+        const numeroVencedor = numerosDisponiveis.splice(indice, 1)[0];
+
+        let tempoDecorrido = 0;
+        let intervaloSom = 60; 
+
+        function rodarLogica() {
+            tempoDecorrido += intervaloSom;
+
+            bola.innerText = Math.floor(Math.random() * TOTAL_NUMEROS) + 1;
+            emitirSomClique();
+
+            if (tempoDecorrido < 4000) {
+                bola.className = "bola-bingo giro-rapido";
+                intervaloSom = 60;
+            } else if (tempoDecorrido < 7000) {
+                bola.className = "bola-bingo giro-medio";
+                intervaloSom = 180;
+            } else if (tempoDecorrido < 10000) {
+                bola.className = "bola-bingo giro-lento";
+                intervaloSom = 450;
+            } else {
+                bola.className = "bola-bingo"; 
+                bola.innerText = numeroVencedor;
+                
+                numerosSorteados.push(numeroVencedor);
+                
+                // Aplica as cores de sorteio de acordo com a paleta
+                const classeSorteado = (numeroVencedor % 2 === 0) ? 'sorteado-azul' : 'sorteado-rosa';
+                document.getElementById(`pedra-${numeroVencedor}`).classList.add(classeSorteado);
+                
+                document.getElementById('historicoTexto').innerHTML = 
+                    `Última Pedra: <strong>${numeroVencedor}</strong> | Sorteados: ${numerosSorteados.length}/${TOTAL_NUMEROS}`;
+                
+                btn.disabled = false;
+                return; 
+            }
+
+            setTimeout(rodarLogica, intervaloSom);
+        }
+
+        rodarLogica();
+    }
+</script>
+</body>
+</html>
